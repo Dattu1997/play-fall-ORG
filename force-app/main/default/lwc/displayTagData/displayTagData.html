@@ -1,0 +1,142 @@
+<template>
+    <Lightning-card>
+        <h1 slot="title">List Builder-</h1>
+        
+        <div slot="actions">
+
+            <lightning-button variant="brand-outline" label="Cancel" title="Cancel" onclick={handleClose} class="slds-m-left_x-small"></lightning-button>
+        </div>
+        <template if:true={isAdd}>
+            
+            <h1 slot="title">isAdd Mode</h1>
+            <lightning-layout size="12" class="slds-m-top_x-small" vertical-align="end">
+                <lightning-layout-item size="04"></lightning-layout-item>
+                <lightning-layout-item size="04" padding="around-small">
+                    <c-custom-lookup-lwc icon-name="standard:contact" s-object-api-name="Contact" label="My Fav Contact" onlookupupdate={lookupContact}
+                                placeholder="Search Contact here...">
+                    </c-custom-lookup-lwc>
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-small">
+                    <!-- <lightning-button search-key ={contactLookUp} variant="brand-outline" label="Create Contact" onclick={openModal} class="slds-m-right_small"></lightning-button> -->
+                    <lightning-button variant="brand" label="Apply" disabled={applyButton} onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+                </lightning-layout-item>
+            </lightning-layout> 
+            
+            <div class="body">
+                <lightning-datatable 
+                    key-field="Id" 
+                    data={accountdata}
+                    columns={columns} 
+                    selected-rows={rowSelected}
+                    draft-values={draftValues} 
+                    errors={handleError}
+                    onrowselection={handleRowAction}>
+                </lightning-datatable>
+            </div>
+            <!-- <div style="overflow: auto;">
+                
+            </div> -->
+            <lightning-layout size="12">
+                <lightning-layout-item size="05">
+                    <c-custom-lookup-lwc class="slds-float_left" icon-name="standard:account" s-object-api-name="Account" disable-input={disableSearch}
+                        label="My Fav Account" onlookupupdate={lookupAccountRecord} onclick={handleClick} placeholder="Add Item...">
+                    </c-custom-lookup-lwc>
+                </lightning-layout-item>
+            </lightning-layout>
+        </template>
+        
+        <!-- <template if:true={isModalOpen}> -->
+            <!-- Modal/Popup Box LWC starts here -->
+            <!-- <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" -->
+                <!-- aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open"> -->
+                <!-- <div class="slds-modal__container"> -->
+                    <!-- Modal/Popup Box LWC header here -->
+                    <!-- <header class="slds-modal__header">
+                        <button
+                            class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                            title="Close" onclick={closeModal}>
+                            <lightning-icon icon-name="utility:close" alternative-text="close"
+                                                variant="inverse" size="small">
+                            </lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">CreateContact</h2>
+                    </header> -->
+                    <!-- <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <div class="slds-p-bottom_large slds-p-left_large" style="width:500px">
+                            <lightning-record-edit-form object-api-name="Contact">
+                                <lightning-messages></lightning-messages>
+                                <div class="slds-grid">
+                                    <div class="slds-col slds-size_6-of-6">
+                                        <lightning-input-field field-name="LastName" value={lastName}
+                                            onchange={getContactVal}></lightning-input-field>
+                                        <lightning-input-field field-name="Email" value={emailval}
+                                            onchange={getEmailVal}></lightning-input-field>
+                                    </div>
+                                </div> -->
+
+                                <!-- <footer class="slds-modal__footer"> -->
+                                <!-- <div class="slds-float_left">
+                                    <button class="slds-button slds-button_neutral" onclick={closeModal}
+                                        title="Close">Close</button>
+                                </div> -->
+                                <!-- <button class="slds-button slds-button_neutral" onclick={handleSubmit} title="Save">Save</button> -->
+                                <!-- <div class="slds-float_right">
+                                    <lightning-button class="slds-m-top_small" type="submit"
+                                        label="Create" onclick={handleSave}> </lightning-button>
+                                </div>
+                            </lightning-record-edit-form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template> -->
+        
+        <template if:true={isEdit}>
+            
+            <h1 slot="title">isEdit Mode</h1>
+            
+            <lightning-layout size="12" vertical-align="end" class="slds-m-top_x-small">   
+                <lightning-layout-item padding="around-small" size="03"></lightning-layout-item>
+                <lightning-layout-item padding="around-small" size="05">
+                    <c-custom-lookup-lwc icon-name="standard:account" s-object-api-name="Account"
+                                label="Selected Account" onlookupupdate={handleClickAccount}
+                                placeholder="Search Account..." drop-down="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid">
+                    </c-custom-lookup-lwc>
+                </lightning-layout-item>
+            
+                <lightning-layout-item padding="around-small" size="01">               
+                        <lightning-button variant="brand" label="Remove" disabled={disableButton} onclick={handleRemove} class="slds-m-left_x-small"></lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+            <template if:true={showTable}>
+                <div class="body">
+                    <lightning-datatable
+                        data-id="ldt"
+                        key-field="Id"
+                        data={contacts}
+                        columns={columnsValues}
+                        onrowselection={getSelectedRecords}
+                        selected-rows={allChecked}
+                        onloadmore={handleLoadMore} enable-infinite-loading>
+                    </lightning-datatable>
+                </div>
+            </template>
+            <template if:true={showlookUp}>
+                <lightning-layout size="12">
+                    <lightning-layout-item size="05">
+                        <c-custom-lookup-lwc class="slds-float_left" icon-name="standard:contact" s-object-api-name="Contact" disable-input={disableSearch}
+                            label="My Fav Contact" onlookupupdate={lookupContactRecord} onclick={handleContactClick} placeholder="Search Contact here..." drop-down="slds-dropdown slds-dropdown_bottom slds-dropdown_length-with-icon-7 slds-dropdown_fluid">
+                        </c-custom-lookup-lwc>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </template>
+        </template>
+    </Lightning-card>
+    <template if:true={isSpinner}>
+        <lightning-spinner
+            alternative-text="Loading..." variant="brand">
+        </lightning-spinner>
+    </template>
+</template>

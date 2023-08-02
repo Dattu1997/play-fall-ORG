@@ -1,0 +1,54 @@
+<template>
+    <lightning-layout>
+    <lightning-button variant="neutral"
+                        label="Create Contact"
+                        onclick={openModal}
+                        class="slds-m-right_small">
+    </lightning-button>
+    <template if:true={isModalOpen}>
+        <!-- Modal/Popup Box LWC starts here -->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box LWC header here -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" >
+                        </lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Create Contact</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">                       
+
+                    <div class="slds-p-bottom_large slds-p-left_large" style="width:500px">
+                        <lightning-record-edit-form
+                           object-api-name="Contact">
+                           <lightning-messages></lightning-messages>
+                           <div class="slds-grid">
+                                <div class="slds-col slds-size_6-of-6">
+                                    <lightning-input-field field-name="LastName" value={lastName} onchange={getContactVal}></lightning-input-field>
+                                    <lightning-input-field field-name="Email" value ={emailval} onchange={getEmailVal}></lightning-input-field>
+                                </div>
+                            </div>
+                       
+                            <!-- <footer class="slds-modal__footer"> -->
+                                <div class="slds-float_left">
+                                    <button class="slds-button slds-button_neutral"  onclick={closeModal} title="Close">Close</button>
+                                </div>
+                                    <!-- <button class="slds-button slds-button_neutral" onclick={handleSubmit} title="Save">Save</button> -->
+                                <div class="slds-float_right">
+                                    <lightning-button class="slds-m-top_small" type="submit" label="Create" onclick={handleSave}> </lightning-button>
+                                </div>
+                            <!-- </footer>      -->
+                        </lightning-record-edit-form>
+                    </div>
+                </div>
+            </div>
+        </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</lightning-layout>
+</template>

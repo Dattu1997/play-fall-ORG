@@ -1,0 +1,32 @@
+<template>
+    <lightning-card title="My Custom Metadata" icon-name="standard:contact">
+        <lightning-layout>
+            <lightning-layout-item size="12" padding="around-small">
+                
+                    <div class="slds-var-m-around_medium">
+                        <lightning-combobox
+                                name="metadataRec"
+                                label="Metadata Record"
+                                value={value}
+                                placeholder="Select Metadata Record"
+                                options={metaRecords}
+                                onchange={handleMetaRecordChange}
+                                required>
+                        </lightning-combobox>
+                    
+                        <lightning-button type="submit" variant="brand" label="Save" onclick={saveClick}></lightning-button>
+                    </div>
+                
+            </lightning-layout-item>
+        </lightning-layout>
+        <template if:true={showTable}>
+            <lightning-datatable
+                key-field="Id"
+                data={data}
+                columns={columns}
+                draft-values={allData}
+                onsave={saveHandle}>
+            </lightning-datatable>
+        </template>
+</lightning-card>
+</template>

@@ -1,0 +1,34 @@
+<apex:page controller="displayContact" >
+    <apex:pageBlock title="All Contacts">
+        <div class = "slds-scope">
+            <apex:form >
+                <apex:pageBlock >
+                    <apex:pageBlockTable value="{!myContacts}" var="contact" >
+                        <apex:column headerValue="Name">
+                            <apex:outputLink value="/{!contact.id}">
+                                <apex:outputText value="{!contact.name}"/>
+                            </apex:outputLink>
+                        </apex:column>
+                        <apex:column headerValue="Account Name">
+                            <apex:outputLink value="/{!contact.accountid}">
+                                <apex:outputtext value="{!contact.Account.name}"/>
+                            </apex:outputLink>
+                        </apex:column>
+                        
+                        <apex:column headerValue="Phone">
+                            <apex:outputtext value="{!contact.phone}"/>
+                        </apex:column>
+                        <apex:column headerValue="Email">
+                            <apex:outputLink value="/{!contact.Email}">    
+                                <apex:outputtext value="{!contact.email}"/>
+                            </apex:outputLink>
+                        </apex:column>
+                        <apex:column headerValue="Title">
+                            <apex:outputtext value="{!contact.Title}"/>
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:pageBlock>
+            </apex:form>
+        </div>
+    </apex:pageBlock>
+</apex:page>

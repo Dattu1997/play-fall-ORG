@@ -1,0 +1,83 @@
+<template>
+  <lightning-card title="Create a lightning-datatable and display modal popup on rowaction in LWC" icon-name="custom:custom14">
+
+    <lightning-datatable data={wireContact.data} columns={columns} key-field="id" hide-checkbox-column="true" onrowaction={handleRowAction}></lightning-datatable>
+    
+    <template if:true={modalContainer}>
+    
+    <section class="slds-modal slds-fade-in-open">
+    
+    <div class="slds-modal__container">
+    
+    <header class="slds-modal__header">
+    
+    <!-- <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModalAction}>
+    
+    <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small" ></lightning-icon>
+    
+    </button> -->
+    <button class="slds-button" title="Close" onclick={closeModalAction}>View</button>
+    <button class="slds-button" title="Close" onclick={handlechangeEdit}>Edit</button>
+    <h2 class="slds-text-heading_medium slds-hyphenate">Contact Record Detail</h2>
+    
+    </header>
+    
+    
+    
+    <div class="slds-modal__content slds-p-around_medium">
+    
+    <table class="slds-table slds-table_bordered slds-table_col-bordered slds-table_cell-buffer">
+    
+    <thead>
+    
+    <tr>
+    
+    <th>First Name</th>
+    
+    <th>Last Name</th>
+    
+    <th>Email Name</th>
+    
+    <th>Phone Name</th>
+    
+    </tr>
+    
+    </thead>
+    
+    <tbody>
+    
+    <tr>
+    
+    <td>{contactRow.FirstName}</td>
+    
+    <td>{contactRow.LastName}</td>
+    
+    <td>{contactRow.Email}</td>
+    
+    <td>{contactRow.Phone}</td>
+    
+    </tr>
+    
+    </tbody>
+    
+    </table>
+    
+    </div>
+    
+    <footer class="slds-modal__footer">
+    
+    <lightning-button variant="brand" label="Close" title="Close" onclick={closeModalAction}></lightning-button>
+    
+    </footer>
+    
+    </div>
+    
+    </section>
+    
+    <div class="slds-backdrop slds-backdrop_open"></div>
+    
+    </template>
+    <br/><br/>
+    
+    </lightning-card>
+</template>

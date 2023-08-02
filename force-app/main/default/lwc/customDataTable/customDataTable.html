@@ -1,0 +1,67 @@
+<template>
+    <!-- <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout">
+        <thead>
+            <tr>
+                <th style="width:3.0rem">
+                    <lightning-input type="checkbox" disabled={disablecheckbox} onchange={handleAllCheckboxes}></lightning-input>
+                </th>
+                <template for:each={accountData} for:item="col">
+                    <th class=" slds-is-sortable slds-cell-shrink columnHoverOver" style="width: 10rem;" scope="col" key={col} data-api={col.fieldLabel} data-order='ASC' aria-sort="none" onclick={sortingRecords}>{col.fieldlabel}
+                        <span class="slds-truncate"
+                            style="padding:1.0rem 0.5rem">{col.fieldLabel}</span>
+                        <lightning-icon class="sort_icon" icon-name="utility:chevronup" alternative-text="Utility image"
+                            size="xx-small"></lightning-icon>
+                    </th>
+                </template>
+            </tr>
+        </thead>
+        <tbody>
+            <template for:each={accountData} for:item="col">
+                <td key={col.fieldName}></td>
+            </template> 
+             <template for:each={dynamicData} for:item="acc" for:index="index">
+                <tr key={acc.Id}>
+                    <td>
+                        <lightning-input value={acc} type="checkbox" checked={isCheckBoxChecked} onclick={getselectedRow} disabled={disablecheckbox}></lightning-input>
+                    </td>
+                    <td>
+                        <span>{acc}{acc.fieldName}: {acc.Fie</span>
+                    </td> --> 
+
+
+
+
+
+
+                    <!-- <td scope="col">
+                        <div style="white-space:nowrap; text-overflow:ellipsis; overflow:hidden;max-width:100%">{acc.Name} </div>
+                    </td> 
+                    <td scope="col">
+                        <div>{acc.Industry} </div>
+                    </td>
+                    <td scope="col">
+                        <div>{acc.Phone} </div>
+                    </td>
+                    <td scope="col">
+                        <div>{acc.Type} </div>
+                    </td>
+                    <td scope="col">
+                        <div>{acc.Website} </div>
+                    </td>
+                    <td scope="col">
+                        <div>{acc.Rating}</div>
+                    </td> -->
+                <!-- </tr>
+            </template>
+         </tbody>
+    </table> -->
+    <div class="body">
+        <!-- <lightning-datatable
+            data-id="ldt"
+            key-field="Id"
+            data={dynamicData}
+            columns={accountData}
+            onrowselection={getSelectedRecords}>
+        </lightning-datatable> -->
+    </div>
+</template>

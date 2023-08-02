@@ -1,0 +1,31 @@
+<template>
+    <lightning-card>
+        <!-- <label class="slds-form-element__label" for="select-01">Select Account</label> -->
+        <div class="slds-form-element__control slds-grid " >
+            <div class="slds-select_container">
+                <select class="slds-select" id="select-01" onchange={onValueSelection}>
+                    <!--iterate all picklist values from accounts list using for:each loop-->
+                    <template for:each={accounts.data} for:item="acc">
+                        <option key={acc.Id} value={acc.Id}>
+                            {acc.Name}
+                        </option>
+                    </template>
+                </select>
+               
+            </div >
+            <lightning-button style="margin-left:16px" label="Remove" variant="brand"  onclick={removeContacts}></lightning-button>
+        </div>
+        <template if:true={contacts}>
+            <lightning-card title="Contacts"  >
+                <div style="height: 300px;">
+                    <lightning-datatable
+                                         key-field="Id"
+                                         data={contacts}
+                                         columns={columns}
+                                         onrowselection={handleRowAction}>
+                    </lightning-datatable>
+                </div>    
+            </lightning-card>
+        </template>
+    </lightning-card>
+</template>

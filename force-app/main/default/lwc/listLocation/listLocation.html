@@ -1,0 +1,43 @@
+<template>
+    <lightning-card>
+    <div class="slds-m-around_medium">
+      <div class="slds-m-bottom_small"><label><b>Your Trip Location</b></label>
+            <lightning-input type="text"
+               value={searchValue}
+               name = "search"
+               onchange={searchKeyword}
+               placeholder="ex: Missoula,MT ">
+            </lightning-input>
+         </div>
+         <lightning-button label="Go"
+              onclick={handleSearchKeyword}
+              variant="brand"></lightning-button>
+    </div> 
+    <template for:each={display} for:item="dattu" for:index="index">
+      <div key={dattu.Id}>
+          <p>
+              {dattu.Name} <br/>
+              {dattu.State} <br/>
+              {dattu.Category} <br/>
+              {dattu.Price} <br/>
+          </p>
+      </div>
+   </template>
+      <div  class="slds-var-m-vertical_medium">
+         <c-pegination records={search} onupdate={updateListingHandler}></c-pegination>
+         
+      </div>
+  
+    <div class="slds-m-around_medium">
+      <div class="slds-m-bottom_small"><label><b>Keyword Search</b></label>
+            <lightning-input type="text"
+             placeholder="ex: River,Outfitter,Species,etc ">
+            </lightning-input>
+         </div>
+         <lightning-button label="Go"
+            onclick={handleSearch}
+            variant="brand">
+        </lightning-button>
+    </div>
+</lightning-card>            
+</template>

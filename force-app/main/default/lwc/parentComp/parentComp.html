@@ -1,0 +1,12 @@
+<template>
+    <lightning-card>
+        <template for:each={fields} for:item="field">
+            <c-child-component key={field.fieldapi} field-api={field.fieldapi} field-type={field.fieldtype}
+                field-label={field.label} is-edit={field.iseditable} oncontactvalue={getContactValues}>
+            </c-child-component>
+        </template>
+        <div class="slds-align_absolute-left">
+            <lightning-button label="Save" onclick={submitDetails}></lightning-button>
+        </div>
+    </lightning-card>
+</template>

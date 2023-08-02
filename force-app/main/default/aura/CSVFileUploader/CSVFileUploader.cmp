@@ -1,0 +1,15 @@
+<aura:component access="global" implements="force:appHostable,forceCommunity:availableForAllPageTypes,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasSObjectName,force:hasRecordId,lightning:availableForFlowScreens">
+    <aura:attribute name="csvApplicationLabel" type="String" access="global" />
+    <aura:attribute name="csvHeaderLabel" type="String" access="global" />
+    <aura:attribute name="filterType" type="String" default="None" access="global" />
+    <aura:attribute name="filterCondition" type="String" access="global" />
+    <aura:attribute name="recordsPerCall" type="Integer" default="200" access="global" />
+    <aura:attribute name="recordId" type="String" default="None" access="global" />
+    <aura:attribute name="csvObjectLabel" type="String" default="None" access="global" />
+
+
+    <c:lxc_customDataLoader csvApplicationLabel="{!v.csvApplicationLabel}" csvHeaderLabel="{!v.csvHeaderLabel}"
+        recordsPerCall="{!v.recordsPerCall}" filterType="{!v.filterType}" filterCondition="{!v.filterCondition}"
+        recordId="{!v.recordId}" objectApiName="{!v.sObjectName}" oncustomrefresh="{!c.refreshHandler}" />
+        
+</aura:component>

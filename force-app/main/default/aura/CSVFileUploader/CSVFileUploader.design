@@ -1,0 +1,11 @@
+<design:component label="Drop Zone">
+    <design:attribute name="csvApplicationLabel" label="CSV File Upload Application Label"  />
+    <design:attribute name="csvHeaderLabel" label="CSV File Upload Component Header" />
+    <design:attribute name="recordsPerCall" label="Max number Of Records Insertion per transaction."  default="200"/>
+    <design:attribute name="filterType" label="Download data" default="None" datasource="All Data,Related Data,Filtered Data,None"/>
+    <design:attribute name="filterCondition" label="Record Filter Condition"/>
+    <design:attribute name="recordId" label="Record Id" description="Only for Community"/>
+    <design:attribute name="csvObjectLabel" label="Do Not Use" description="Do Not Use"  />
+
+    
+</design:component>

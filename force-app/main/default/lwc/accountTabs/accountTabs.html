@@ -1,0 +1,40 @@
+<template>
+<lightning-card>
+<lightning-layout>
+    <lightning-tabset padding="around-small">
+    <lightning-tab padding="around-small" label = "Account">
+        <lightning-layout multiple-rows="true">
+            <lightning-layout-item size="12" small-device-size="3" medium-device-size="4" large-device-size="3" padding="around-small">
+        <p>Name: {accountData.Name}</p><br>
+        <p>Industry: {accountData.Industry}</p><br>
+        <p>Phone: {accountData.Phone}</p><br>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-tab>
+    <lightning-tab padding="around-small" label = "Opportunity">
+        <lightning-layout multiple-rows="true">
+            <lightning-layout-item size="12" small-device-size="3" medium-device-size="4" large-device-size="3" padding="around-small">
+                <p>Name: {oppData.Name}</p><br>
+                <p>CloseDate:{oppData.CloseDate}</p><br>
+                <p> StageName:{oppData.StageName}</p><br>
+                <p>Description: {oppData.Description}</p><br>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-tab>
+    <lightning-tab padding="around-small" label = "Lead">
+        <lightning-layout multiple-rows="true">
+            <lightning-layout-item size="12" small-device-size="3" medium-device-size="4" large-device-size="3" padding="around-small">
+                <p>Name: {ldData.Name}</p><br>
+                <p>Company:{ldData.Company}</p><br>
+                <p>Email:{ldData.Email}</p><br>
+                <p>Title: {ldData.Title}</p><br>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-tab>
+    </lightning-tabset>
+</lightning-layout>
+
+        
+        
+</lightning-card>
+</template>

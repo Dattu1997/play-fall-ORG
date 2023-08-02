@@ -1,0 +1,44 @@
+.textMsg {
+    margin-left:10px;
+    margin-top:6px
+}
+
+.outer {
+    pointer-events:none;
+    height:69vh;
+    margin-top:2vh;
+    overflow:auto;
+    opacity: 0.5;
+}
+
+.mode-table {
+    height:64vh;
+    margin-top:2vh;
+    overflow:auto;
+}
+
+.loader {
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid #3498db;
+    display: block;
+    margin: 0 auto;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+  }
+  
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+/* .slds-card__body {
+    padding: 0 12px;
+} */

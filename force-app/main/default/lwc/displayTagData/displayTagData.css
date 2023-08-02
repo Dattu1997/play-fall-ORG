@@ -1,0 +1,19 @@
+.body {
+    /* max-width: 80rem !important;
+    width: 80% !important; */
+    height: 400px !important;
+    
+}
+.slds-m-top_x-small{
+    height: 5px;
+}
+/* .slds-table_fixed-layout{
+    table-layout: fixed;
+}
+
+.slds-has-flexi-truncate{
+    overflow-wrap: break-word;
+} */
+/* .slds-float_left{
+    display: block;
+} */

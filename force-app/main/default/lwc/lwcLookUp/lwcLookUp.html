@@ -1,0 +1,95 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 08-02-2021
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <div if:true={isComponentLoaded}>
+        <div class="slds-form-element">
+            <div class="slds-form-element__control">
+                <div class="slds-combobox_container">
+                    <div id="box" class={boxClass} aria-expanded="true" aria-haspopup="listbox" role="combobox">
+                        <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                            <template if:true={isValue}>
+
+                                <template if:true={isReadOnly}>                                    
+                                    <lightning-icon icon-name={iconName} alternative-text="acc" size="x-small"></lightning-icon>
+                                     &nbsp;&nbsp;{valueObj}
+                                </template>
+
+                                <template if:false={isReadOnly}>
+                                    
+                                    <div id="lookup-pill" class="slds-pill-container">
+                                        <label class="slds-form-element__label slds-m-left_xx-small" for="lookup-pill"
+                                            id="combobox-label-id-1">{labelName}</label>
+                                        <lightning-pill class="pillSize" label={valueObj} name={valueObj} onremove={handleRemovePill} href={href}>
+                                            <lightning-icon icon-name={iconName} alternative-text="acc" ></lightning-icon>
+                                        </lightning-pill>
+                                    </div>
+                                </template>
+
+                            </template>
+                            <template if:false={isValue}>
+                                <div class="slds-p-top_none">
+                                    <lightning-input class={inputClass} type="search" id="input" value={searchTerm}
+                                        onclick={handleClick} onblur={inblur} onchange={onChange} disabled={isDisabled}
+                                        variant={variant} autocomplete="off" label={labelName}
+                                        placeholder={placeholder}>
+                                    </lightning-input>
+                                </div>
+                            </template>
+                        </div>
+                        <div id="listbox-id-1" class={dropdownClass} role="listbox">
+                            <div if:true={showSpinner}>
+                                <lightning-spinner alternative-text="Loading..." variant="brand"></lightning-spinner>
+                            </div>
+                            <template if:true={isShow}>
+                                <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                                    <template for:each={options} for:item="item">
+                                        <li key={item.Id} onclick={onSelect} data-id={item.Id} data-name={item.Name} role="presentation">
+                                            <span class="slds-lookup__item-action slds-lookup__item-action--label" role="option">
+                                                <template if:false={isTypeListBuilder}>
+                                                    <lightning-icon class="slds-icon slds-icon--small" icon-name={iconName} alternative-text={objName} size="small"></lightning-icon>
+                                                    <span class="slds-truncate">
+                                                        <template if:true={isTypeCase}>
+                                                            {item.CaseNumber}
+                                                        </template>
+                                                        <template if:false={isTypeCase}>
+                                                            {item.Name}
+                                                        </template>
+                                                    </span>
+                                                </template>
+                                                <template if:true={isTypeListBuilder}>
+                                                    <lightning-icon class="slds-icon slds-icon--small" icon-name={item.iconName} alternative-text={objName} size="small"></lightning-icon>
+                                                    <span class="slds-media__body">
+                                                        <span
+                                                            class="slds-listbox__option-text slds-listbox__option-text_entity">{item.Name}</span>
+                                                        <span
+                                                            class="slds-listbox__option-meta slds-listbox__option-meta_entity">{item.field}</span>
+                                                        <!-- <span class="slds-listbox__option-meta slds-listbox__option-meta_entity">{item.Website} • {item.PE_Associate_Name__c} • {item.Interest_Level__c}</span> -->
+                                                    </span>
+                                                </template>
+                                            </span>
+                                        </li>
+                                    </template>
+                                    <template if:true={createRecord}>
+                                        <li onclick={createRecordFunc} role="presentation">
+                                            <span class="slds-lookup__item-action slds-lookup__item-action--label" role="option">
+                                                <lightning-button-icon class="slds-icon slds-icon--small  slds-icon-text-default" variant="border-inverse, bare" icon-name="utility:add" size="small"></lightning-button-icon>
+                                                <span class="slds-truncate">New {objLabelName}</span>
+                                            </span>
+                                        </li>
+                                    </template>
+                                </ul>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</template>

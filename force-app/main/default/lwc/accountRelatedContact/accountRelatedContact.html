@@ -1,0 +1,45 @@
+<template>
+    <lightning-card title="Account Name" icon-name="standard:account">
+    
+        <table>
+        <tr>
+        <td>
+        
+        <div class="slds-m-around_medium">
+        <select class="slds-select" onchange={contactFetch}>
+        <option>Select Account</option>
+        <template for:each ={acc} for:item="item">
+        <option key={item.Id} value={item.Id}>{item.Name}</option>
+        </template>
+        </select>
+        </div>
+        </td>
+        </tr>
+        <tr>
+        <td>
+        <div class="slds-m-around_medium">
+        <select class="slds-select" >
+        <option >Contacts</option>
+        <template for:each ={con} for:item="item">
+        <option key={item.Id} value={item.LastName}>{item.LastName}</option>
+        </template>
+        </select>
+        </div>
+        </td>
+        </tr>
+        
+        <!-- <tr>
+        <td>
+        <div class="slds-m-around_medium">
+        <select class="slds-select" >
+        <option >Select Opportunity</option>
+        <template for:each ={opp} for:item="item">
+        <option key={item.Id} value={item.Name}>{item.Name}</option>
+        </template>
+        </select>
+        </div>
+        </td>
+        </tr> -->
+        </table>
+        </lightning-card>
+</template>

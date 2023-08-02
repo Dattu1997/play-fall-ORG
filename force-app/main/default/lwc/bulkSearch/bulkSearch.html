@@ -1,0 +1,38 @@
+<template>
+    <lightning-card class=”slds-m-around_small”>  
+        <lightning-layout padding="around-medium" size="12" style="margin-top: -20px;">
+            <lightning-layout-item size="04">
+                <div style="width: 350px;">
+                    <lightning-messages></lightning-messages>
+                    <lightning-textarea
+                        label="Enter a search value per line:"
+                        value={searchTerm}
+                        message-when-value-missing="Please enter search term"
+                        required>
+                    </lightning-textarea>
+                </div>
+            </lightning-layout-item>
+        </lightning-layout>
+        <lightning-layout size = "12">
+            <lightning-layout-item size="04" padding="horizontal-medium">
+                <button class="slds-button slds-button_brand"  onclick={handleButton} disabled={isDisabled}>Search</button>
+                <button class="slds-button slds-button_brand"  disabled={isDisabled} onclick={handleClick}>Search And Open</button>
+            </lightning-layout-item>
+            <lightning-layout-item size="05">
+                <h1>Number of tabs to open per batch : <input type="text" value='5'></h1>
+            </lightning-layout-item>
+            <lightning-layout-item size="03"></lightning-layout-item>
+        </lightning-layout>
+
+        <template if:true={showTable}>
+            <div class="mode-table">
+                <lightning-datatable
+                    data-id="ldt"
+                    key-field="Id"
+                    columns={column}
+                    data={data}>
+                </lightning-datatable>
+            </div>
+        </template>
+    </lightning-card>
+</template>

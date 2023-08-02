@@ -1,0 +1,58 @@
+<template>
+    <lightning-card>
+        <div slot="title">
+          <h3> 
+                <lightning-icon icon-name="standard:contact" size="small"></lightning-icon> Insert a Contact Record in LWC           
+             </h3>
+          </div>
+      <div class="slds-grid slds-wrap">
+ 
+          <div class="slds-p-horizontal--small slds-col slds-size_6-of-12 slds-m-bottom--medium">
+              <div class="slds-form-element">
+                <lightning-input label="First Name" type="text" value={firstName} oncommit={contactChangeVal}></lightning-input>
+              </div>
+          </div>
+ 
+          <div class="slds-p-horizontal--small slds-col slds-size_6-of-12 slds-m-bottom--medium">
+            <div class="slds-form-element">
+                <lightning-input label="Last Name" value={lastName} oncommit={contactChangeVal}></lightning-input>
+             </div>
+          </div>
+ 
+          <div class="slds-p-horizontal--small slds-col slds-size_6-of-12 slds-m-bottom--medium">
+            <div class="slds-form-element">
+                <lightning-input label="Phone" type="text" value={phoneNo} oncommit={contactChangeVal}></lightning-input>
+             </div>
+          </div>
+ 
+          <div class="slds-p-horizontal--small slds-col slds-size_6-of-12 slds-m-bottom--medium">
+            <div class="slds-form-element">
+                <lightning-input label="Email" type="text" value={emailId} oncommit={contactChangeVal} ></lightning-input>
+             </div>
+          </div>
+ 
+          <!-- <div class="slds-p-horizontal--small slds-col slds-size_6-of-12 slds-m-bottom--medium">
+            <div class="slds-form-element">
+                <lightning-input label="Department" value={departmentVal} onchange={contactChangeVal} ></lightning-input>
+             </div>
+          </div>
+ 
+          <div class="slds-p-horizontal--small slds-col slds-size_6-of-12 slds-m-bottom--medium">
+            
+            <div class="slds-form-element">               
+               <lightning-input label="Description" value={descriptionVal} onchange={contactChangeVal}></lightning-input>
+             </div>
+          </div> -->
+          
+      </div>
+     
+    
+ 
+     <!-- <div slot="footer">
+        <lightning-button  class="slds-m-middle_small" onclick={insertContactAction}></lightning-button>        
+      </div> -->
+ 
+<br/> <br/>
+ 
+    </lightning-card>
+</template>

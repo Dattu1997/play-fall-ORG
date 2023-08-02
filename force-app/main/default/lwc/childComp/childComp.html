@@ -1,0 +1,19 @@
+<template>
+   
+        <template if:true={isEdit}>
+             <template if:true={isText}>
+                <lightning-input label={fieldLabel} type={fieldType} onchange={getDetails}></lightning-input>
+             </template> 
+            <template if:true={isEmail}>
+                
+                <lightning-input label={fieldLabel} type={fieldType} placeholder="test@gmail.com" onchange={getDetails} ></lightning-input>
+            </template>
+        </template>
+           <template if:false={isEdit}>
+               <template if:true={isPhone}>
+                   <lightning-formatted-phone value={Phone} onchange={getDetails}></lightning-formatted-phone>
+               </template>
+           </template>
+        
+   
+</template>

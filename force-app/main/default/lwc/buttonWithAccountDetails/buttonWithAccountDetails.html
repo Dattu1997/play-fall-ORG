@@ -1,0 +1,16 @@
+<template>
+    <lightning-tabset>
+        <template for:each={acc} for:item="Account">
+            <!-- <template for:each={acc} for:item="acc"></template> -->
+            <lightning-tab label={Account.Name} key={Account.Id}>
+            </lightning-tab>
+        <!-- <lightning-tab > Account </lightning-tab> -->
+        </template>
+        <!-- <template if:true= {opp}>
+            <lightning-tab > Opportunity </lightning-tab>
+        </template>
+        <template if:true= {ld}>
+            <lightning-tab > Leads </lightning-tab>
+        </template> -->
+    </lightning-tabset>
+</template>

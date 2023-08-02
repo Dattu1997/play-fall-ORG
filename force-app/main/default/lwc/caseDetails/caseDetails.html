@@ -1,0 +1,14 @@
+<template>
+    <lightning-card>
+      <div class="slds-m-around_medium">
+              <lightning-input label="Name" value = {Name} onchange = {getDetails}></lightning-input>
+              <lightning-input label="Email"  required value = {Email} onchange = {getDetails}></lightning-input>
+              <lightning-input label="Phone" value = {Phone} onchange = {getDetails}></lightning-input>
+              <lightning-input label="Subject" value = {Subject} onchange = {getDetails}></lightning-input>
+              <lightning-textarea label="Description" value = {Description} onchange = {getDetails} ></lightning-textarea>
+              <div class="slds-align_absolute-center">
+              <lightning-button label="Send Message" onclick={submitDetails}></lightning-button>
+            </div>
+      </div>
+  </lightning-card>  
+</template>

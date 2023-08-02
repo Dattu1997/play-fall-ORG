@@ -1,0 +1,58 @@
+<template>
+    
+<lightning-card >
+    <div style="background-color: lightblue;">
+        <div class="companylogo"> 
+            <img src="https://media-exp1.licdn.com/dms/image/C510BAQHnWl5lpFVA7w/company-logo_200_200/0/1563876735316?e=2147483647&v=beta&t=JlTei-fzyJnm7R9T-2q0Lyyer_f9WQZlUZrUfSCykMc">
+        </div>
+        <div class="navbar">
+        <a href="#home">Home</a>
+        <a href="#news">News</a>
+        <div class="dropdown">
+            <button class="dropbtn">Cars </button>
+            <div class="dropdown-content">
+            <a href="#">TATA</a>
+            <a href="#">THAR </a>
+            <a href="#">VARNA</a>
+            </div>
+        </div> 
+        <div class="dropdown">
+            <button class="dropbtn">Sports</button>
+            <div class="dropdown-content">
+            <a href="#">CRICKET</a>
+            <a href="#">VALLY BALL</a>
+            <a href="#">BADMENTON</a>
+            </div>
+        </div> 
+        <div class="dropdown">
+            <button class="dropbtn">Bikes</button>
+            <div class="dropdown-content">
+            <a href="#">DUKE</a>
+            <a href="#">ROYAL ENFIELD </a>
+            <a href="#">YAMAH</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">Phones</button>
+            <div class="dropdown-content">
+            <a href="#">IPHONE</a>
+            <a href="#">REDMI</a>
+            <a href="#">REAL ME</a>
+            </div>
+        </div> 
+        </div>
+    <lightning-layout>
+        <lightning-layout-item size="12" large-device-size="12" medium-device-size="4" small-device-size="12" padding="around-small">
+            <div class="container">      
+            <img src = "https://bossbabe.com/wp-content/uploads/2019/09/currency-of-happiness.jpg"  height="100%" width="100%">
+            <div class="centered"><p>The life Insurance. </p><p>It will Give Happy life.</p>Invest In Life Insurence.
+        <p><lightning-button variant="success" label="SIGNUP" title="Successful action" onclick={handleClick}></lightning-button><B></B>
+        <lightning-button variant="success" label="LOGIN" title="Successful action" onclick={handleClick}></lightning-button></p>
+          </div>
+        </div>
+        </lightning-layout-item>
+    </lightning-layout>
+</div>
+</lightning-card>
+
+</template>

@@ -1,0 +1,234 @@
+<template>
+    <lightning-card variant="narrow" title={cardTitle} icon-name="utility:list">
+        
+        <template if:true={isManageMode}>   <!--Manage Mode-->
+            <lightning-layout padding="around-medium" size="12" style="margin-top: -30px;">
+                <lightning-layout-item size="05"></lightning-layout-item>
+                <lightning-layout-item size="03">
+                    <div style="width: 80%;">
+                        <c-lwc-look-up label-name="Selected List" value-id={tagName} value-obj={tagName} placeholder="Select list..." show-label="true" object-api-name="Relationship_Tag__c" 
+                                        obj-name="Relationship_Tag__c" obj-name-field="Name" onvalueselect={getSelectedTag}  fields-to-show="Name" icon-name="standard:price_book_entries" 
+                                        filter={filterCondition} is-remove-pill={removePill} read-only={readOnly}>
+                        </c-lwc-look-up>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item size="04" padding = "horizontal-medium" style="text-align:end;">
+                    <button class="slds-button slds-button_destructive" style ={removeBtnStyle} onclick ={openModalWindow} disabled = {isDisabled}>Remove Selected Records</button>
+                    <button class="slds-button slds-button_brand" style ={applyBtnStyle} disabled ={isDisabled} onclick={navigateToCommandCenter}>Open List in Command Center</button>
+                </lightning-layout-item>
+            </lightning-layout>
+
+            <template if:true={enableManageTable}>
+
+                <lightning-layout size="12">
+                    <lightning-layout-item size="01" style="width: auto; margin-left:5px">
+                        <h6><b>Total Rows : </b>{recordListSize}</h6>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="01" style="width: auto; padding-left:1%;">
+                        <h6><b>Rows Selected : </b>{selectedRowsCount}</h6>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="03"></lightning-layout-item>
+                </lightning-layout>
+
+                <div class="mode-table">
+                    <lightning-datatable
+                        data-id="ldt"
+                        key-field="Id"
+                        data={dataManaged}
+                        columns={columns2}
+                        selected-rows={checkRows}
+                        onrowselection={handleSelectedRow}
+                        sorted-by={sortBy}
+                        sorted-direction={sortDirection}
+                        onsort={handleSort}
+                        load-more-offset="60"
+                        enable-infinite-loading
+                        onloadmore={handleMoreData}>
+                    </lightning-datatable>
+                </div>
+            
+                <lightning-layout padding="around-medium" size="12" style="margin-top:2vh;">
+                    <lightning-layout-item size="04" class="slds-p-left_x-small">
+                        <c-lwc-look-up label-name="Relationship" placeholder="Add records..." show-label="true" is-type-list-builder="true" fields-to-disp={fieldsToDisp} 
+                        where-clause={whereClause} is-show-pill="true" object-api-name="Account" onvalueselect={getRecordIdFromChild} obj-name="Account" obj-name-field="Name" 
+                        dropdown-class="slds-dropdown slds-dropdown_bottom slds-dropdown_length-with-icon-7 slds-dropdown_fluid" fields-to-show="Name" external-data={validIds}
+                        onkeysearch={handleKeySearch} is-disabled={disableSearch}>
+                        </c-lwc-look-up>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="02">
+                        <template if:true={relMsg}>
+                            <div if:true={noSearchValue}>
+                                <div class="slds-var-p-around_medium slds-text-color_error">No matches found.</div>
+                            </div>
+                        </template>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="06">
+                    </lightning-layout-item>
+                </lightning-layout>
+            </template>
+        </template>
+
+        <template if:true={isMassAddMode}>  <!--Mass Add Mode-->
+            
+            <lightning-layout padding="around-medium" size="12" style="margin-top: -30px;">
+                <lightning-layout-item size="05"></lightning-layout-item>
+                <lightning-layout-item size="03" flexibility="auto">
+                    <div style="width: 80%;">
+                        <c-lwc-look-up label-name="Selected List" placeholder="Select list..." show-label="true" object-api-name="Relationship_Tag__c" obj-name="Relationship_Tag__c" 
+                        obj-name-field="Name" onvalueselect={getRecordIdFromChild} oncreatenew={handleCreateNewTag} fields-to-show="Name" icon-name="standard:price_book_entries" 
+                        filter={filterCondition} order-by="Name" read-only={readOnly}></c-lwc-look-up>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item size="04"  padding="horizontal-medium" style="text-align: end;">
+                    <button style={applyBtnStyle} class="slds-button slds-button_brand" disabled={isDisabled} onclick={handleApply}>Add Selected Records</button>
+                    <button style={navigateBtnStyle} class="slds-button slds-button_brand" disabled={isDisabled} onclick={navigateToCommandCenter}>Open List in Command Center</button>
+                </lightning-layout-item>
+            </lightning-layout>
+    
+            <lightning-layout size="12" style="padding-top: 1vh;">
+                <lightning-layout-item size="04">
+                    <h6 style="display: inline; float:left; margin-right:3vh"><b>Total Rows : </b>{recordListSize}</h6>
+                    <h6><b>Rows Selected : </b>{selectedRowsCount}</h6>
+                </lightning-layout-item>
+                <lightning-layout-item size="01"></lightning-layout-item>
+                <template if:true={tagSelected}>
+                    <lightning-layout-item size="03" style="">
+                        <h6><b>Total Records on Selected List : </b>{tagRelationships}</h6>
+                    </lightning-layout-item>
+                </template>
+                <lightning-layout-item size="04"></lightning-layout-item>
+            </lightning-layout>
+            
+            <div class="outer" style="">
+                <lightning-datatable
+                    key-field="Id"
+                    data-id="tableid"
+                    data={data}
+                    columns={columns}
+                    onrowselection={handleSelectedRow}
+                    selected-rows={checkRows}
+                    sorted-by={sortBy}
+                    sorted-direction={sortDirection}
+                    onsort={handleSort}
+                    enable-infinite-loading
+                    onloadmore={handleMoreData} >
+                </lightning-datatable>
+            </div>
+
+            <lightning-layout size="12" style="margin-top:2vh;">
+                <lightning-layout-item size="04" class="slds-p-left_x-small">
+                    <c-lwc-look-up label-name="Relationship" placeholder="Add records..." show-label="true" is-disabled={disableSearch} is-show-pill="true" is-type-list-builder="true" 
+                                    fields-to-disp={fieldsToDisp} where-clause={whereClause} dropdown-class="slds-dropdown slds-dropdown_bottom slds-dropdown_length-with-icon-7 slds-dropdown_fluid"
+                                    external-data={tagRelatedRelationshipIds} object-api-name="Account" onvalueselect={getRecordIdFromChild} obj-name="Account" obj-name-field="Name" fields-to-show="Name"
+                                    onkeysearch={handleKeySearch} >
+                    </c-lwc-look-up>
+                </lightning-layout-item>
+                <lightning-layout-item size="04">
+                    <template if:true={relMsg}>
+                        <div if:true={relAdded}>
+                            <div class="textMsg slds-text-color_success">Item added successfully.</div>
+                        </div>
+                        <div if:true={relExists}>
+                            <div class="textMsg slds-text-color_error">Item is already in the list.</div>
+                        </div>
+                        <div if:true={relNotAdded}>
+                            <div class="textMsg slds-text-color_error">There was a problem adding the selected item to the table. Please try again.</div>
+                        </div>
+                        <div if:true={noSearchValue}>
+                            <div class="textMsg slds-text-color_error">No matches found.</div>
+                        </div>
+                    </template>
+                </lightning-layout-item>
+                <lightning-layout-item size="04"></lightning-layout-item>
+            </lightning-layout>
+        </template>
+
+        <!-- Lightning spinner -->
+        <template if:true={isSpinner}>
+            <div class="slds-grid_align-center spinner">
+                <lightning-spinner alternative-text="Loading..." variant="brand"></lightning-spinner>
+            </div>
+        </template>
+    </lightning-card>
+
+    <template if:true={openModal}> 
+        <template if:true={isMassAddMode}>            
+            <!-- Modal window for Apply confirmation -->
+            <template if:true={isApply}>
+                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container" style="width: 50%;">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                            <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small"></lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 class="slds-text-heading_medium slds-hyphenate"><strong>Add Records</strong></h2>
+                    </header>
+
+                    <div class="slds-modal__content slds-var-p-around_medium">
+                            <p><b>Add {selectedRelationships} records to list {tagName}?</b></p>
+                            <br>
+                            <br>
+                            <lightning-radio-group name="radioGroup" label="After applying updates:" options={options} value={value} onchange={handleRadioChange} type="radio" required></lightning-radio-group>
+                    </div>
+
+                    <footer class="slds-modal__footer" style="background: gainsboro;">
+                        <button class="slds-button slds-button_brand" style="border-radius: 12px; background-color:#0176d3;" onclick={handleSave}>Confirm</button>
+                        <button class="slds-button slds-button_text-destructive" style="border-radius: 12px;" onclick={closeModal}>Cancel</button>
+                    </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </template>
+            
+            <!-- Modal window for custom toast messages -->
+            <template if:true={isCustomToast}>
+                <div class="slds-notify_container">
+                    <div class={outerClass} role="status">
+                        <span class="slds-assistive-text">{toastType}</span>
+                        <span class={innerClass} title={toastMsg}>
+                            <lightning-icon icon-name={iconName} alternative-text="icon" styleclass="slds-icon slds-icon_small" variant="inverse" size="small"></lightning-icon>
+                        </span>
+                        <div class="">
+                            <h2 class="slds-text-heading_small">
+                                <lightning-formatted-rich-text value={toastMsg}>
+                                </lightning-formatted-rich-text>
+                            </h2>
+                        </div>
+                        
+                        <div class="slds-notify__close">
+                            <lightning-button-icon icon-name="utility:close" size="small" variant="border-filled" class="slds-button slds-button_icon slds-button_icon-inverse" alternative-text="next" onclick={closeModal} ></lightning-button-icon>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </template>
+        
+        <!--Modal window for Remove confirmation-->
+        <template if:true={isManageMode}>
+            <div if:true={isRemove}>
+                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container" style="width: 50%;">
+                        <header class="slds-modal__header">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                                <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small"></lightning-icon>
+                                <span class="slds-assistive-text">Close</span>
+                            </button>
+                            <h2 class="slds-text-heading_medium slds-hyphenate"><strong> Delete Records</strong></h2>
+                        </header>
+
+                        <div class="slds-modal__content slds-var-p-around_medium">
+                                <p style="padding-left: 30%;"><b>Remove {selectedRelationships} records from list {tagName}?</b></p>
+                        </div>
+
+                        <footer class="slds-modal__footer">
+                            <button class="slds-button slds-button_destructive" onclick={handleRemove}>Confirm</button>
+                            <button class="slds-button slds-button_text-destructive" onclick={closeModal}>Cancel</button>
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </div>
+        </template>
+    </template>
+</template>

@@ -1,0 +1,27 @@
+<template>
+<lightning-card>
+<div class="c-container">
+<lightning-layout horizontal-align="spread">
+<lightning-layout-item size="3" small-device-size="1"  medium-device-size="4" large-device-size="3" padding="around-small">
+<div class="header-column">
+    <img src = "https://images.pexels.com/photos/3958958/pexels-photo-3958958.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" height="100%" width="100%">
+
+</div>
+</lightning-layout-item>
+
+<lightning-layout-item size="3" small-device-size="1" medium-device-size="4" large-device-size="6" padding="around-small">
+<p>Name: {accountData.Name}</p><br>             <p>Website: {accountData.Website}</p><br>
+<p>Industry: {accountData.Industry}</p><br>     <p>Fax: {accountData.Fax}</p><br>
+<p>Phone: {accountData.Phone}</p><br>             
+</lightning-layout-item>
+<lightning-layout-item size="3" small-device-size="1"  medium-device-size="4" large-device-size="3" padding="around-small">
+<div class="header-column">
+    <img src = "https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" height="100%"  width="100%">
+
+</div>
+</lightning-layout-item>
+</lightning-layout>
+<c-account-tabs > </c-account-tabs> 
+</div>
+</lightning-card>
+</template>

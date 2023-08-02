@@ -1,0 +1,89 @@
+<template>
+    <lightning-card>
+    <div class="slds-box slds-theme–default">
+        <div class="slds-text-color_inverse slds-text-heading_large" style="padding:0.5rem;background:#16325c">        
+            Accounts
+        </div>
+        <div class="slds-float_right">        
+            <lightning-input type="search" onblur={handleKeyChange} class="slds-m-bottom_small" label="Search" maxlength="70">  
+            </lightning-input>  
+        </div>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="0" onclick={sortRecs} name="Name">
+                            Account Name
+                        </a>
+                    </th>
+                    <th class="" scope="col">
+                        <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="0" onclick={sortRecs} name="AccountNumber">
+                            Account Number
+                        </a>
+                    </th>
+                    <th class="" scope="col">
+                        <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="0" onclick={sortRecs} name="Industry">
+                            Industry
+                        </a>
+                    </th>
+                    <th class="" scope="col">
+                        <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="0" onclick={sortRecs} name="Rating">
+                            Rating
+                        </a>
+                    </th>
+                    <th class="" scope="col">
+                        <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="0" onclick={sortRecs} name="Type">
+                            Type
+                        </a>
+                    </th>
+                    <th class="" scope="col">
+                        <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="0" onclick={sortRecs} name="Phone">
+                            Phone
+                        </a>
+                    </th>
+                    <th class="" scope="col">
+                        <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="0" onclick={sortRecs} name="Active__c">
+                            Active
+                        </a>
+                    </th>
+                    <th class="" scope="col">
+                        <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="0" onclick={sortRecs} name="SLA__c">
+                            SLA
+                        </a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <template iterator:it={records}>
+                    <tr class="slds-hint-parent" key = {it.value.Id}>
+                        <td data-label="Account Name">
+                            <div class="slds-cell-wrap">{it.value.Name}</div>
+                        </td>
+                        <td data-label="Account Number">
+                            <div class="slds-cell-wrap">{it.value.AccountNumber}</div>
+                        </td>
+                        <td data-label="Industry">
+                            <div class="slds-cell-wrap">{it.value.Industry}</div>
+                        </td>
+                        <td data-label="Rating">
+                            <div class="slds-cell-wrap">{it.value.Rating}</div>
+                        </td>
+                        <td data-label="Type">
+                            <div class="slds-cell-wrap">{it.value.Type}</div>
+                        </td>
+                        <td data-label="Phone">
+                            <div class="slds-cell-wrap">{it.value.Phone}</div>
+                        </td>
+                        <td data-label="Active">
+                            <div class="slds-cell-wrap">{it.value.Active__c}</div>
+                        </td>
+                        <td data-label="SLA">
+                            <div class="slds-cell-wrap">{it.value.SLA__c}</div>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </div>
+</lightning-card>
+</template>

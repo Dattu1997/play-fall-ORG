@@ -1,0 +1,91 @@
+<template>
+    <lightning-card>
+
+        <lightning-accordion active-section-name="A">
+            <lightning-card>
+
+            <lightning-accordion-section name="A" label="Information">
+        <div class="slds-form_horizontal slds-form slds-grid slds-wrap">
+        <lightning-layout-item padding="around-small" size="12" medium-device-size="6" large-device-size="6">    
+        <lightning-input label="Listing Name" type="text" onchange={handleChange} required></lightning-input>
+        <lightning-combobox
+         label = "Category"
+         required options ={categoryPL} 
+         type="picklist">
+        </lightning-combobox>
+        <lightning-combobox
+         label = "Duration" 
+         required
+         options={durationPL}
+         type="picklist">
+        </lightning-combobox>
+        <lightning-input label="Street" type="text" onchange={handleChange}></lightning-input>
+        <lightning-input label="City" type="text" onchange={handleChange} required></lightning-input>
+        <lightning-combobox
+         label = "State"
+         required options ={statePL} 
+         type="picklist">
+        </lightning-combobox>
+        <lightning-input label="Zip/Postal Code" type="text" onchange={handleChange} required></lightning-input>
+        <lightning-input label="Country" type="text" onchange={handleChange} required></lightning-input>
+        </lightning-layout-item>  
+        <lightning-layout-item padding="around-small" size="12" medium-device-size="6" large-device-size="6">      
+        
+        <lightning-combobox
+         label = "Status" 
+         required options ={statusPL}
+         type="picklist" >
+        </lightning-combobox>
+        <lightning-input label = "Base Price" type="number" onchange={handleChange} required></lightning-input>
+        <lightning-input label = "Number of Days" type="number" onchange={handleChange} disabled="true" ></lightning-input>
+        <lightning-input label = "Price Per Person" type="number" onchange={handleChange} required></lightning-input>
+        <lightning-input label = "Guest Min Capacity" type="number" onchange={handleChange} required></lightning-input>
+        <lightning-input label = "Guest Max Capacity" type="text" onchange={handleChange} ></lightning-input>
+        <lightning-input label = "Items to Bring" type="text" onchange={handleChange} ></lightning-input>
+        <lightning-input label = "Pick Up Location" type="text" onchange={handleChange} ></lightning-input>
+        </lightning-layout-item>  
+     </div>
+    </lightning-accordion-section>
+      
+    </lightning-card>
+    <lightning-card>
+        
+            <lightning-accordion-section name="B" label="Fill Out">
+               <div class="slds-form_horizontal slds-form slds-grid slds-wrap">
+                <lightning-input-rich-text required label="Description"
+                                        label-visible
+                                        value={Description}
+                                        onchange={handleChange}>
+                </lightning-input-rich-text>
+                <lightning-input-rich-text required label="Whats Include"
+                                        label-visible
+                                        value={WhatsInclude}
+                                        onchange={handleChange}>
+                </lightning-input-rich-text>
+                <lightning-input-rich-text required label="Other Considerations"
+                                        label-visible
+                                        value={OtherConsiderations}
+                                        onchange={handleChange}>
+                </lightning-input-rich-text>
+                </div>
+                </lightning-accordion-section>
+                
+        </lightning-card>
+        
+            <lightning-accordion-section name="Attachment" label="Attachment">
+              <div class="slds-m-around_medium">
+                <lightning-input type="file"  required name="uploadFile" label="Upload file"
+                  onchange={openfileUpload}>
+                  <p>{fileName}</p>
+                </lightning-input>
+              </div>
+            </lightning-accordion-section>
+        </lightning-accordion>
+    <lightning-card>
+            <div class="slds-align_absolute-left">
+              <lightning-button style="margin-left:90%" variant="button" label="Reset" onclick={resetPage}></lightning-button>
+              <lightning-button variant="button" label="Save" onclick={submitDetails}></lightning-button>
+            </div>
+        </lightning-card>
+    </lightning-card>
+  </template>

@@ -1,0 +1,67 @@
+<apex:page >
+    <apex:includeLightning />
+    <div id="lightning"/>
+    <script>
+        $Lightning.use("c:LightningOutPut", function() {
+            $Lightning.createComponent("c:listBuilder", {
+                "mode" : "Mass Add",
+                'recordList'  : [
+                                // {Id:'0015j00000eE27DAAS', 'Name': 'Test26'},
+                                // {Id: '0015j00000cZbJ7AAK', 'Name': 'Case Origin'},
+                                // {Id: '0015j00000dlfppAAA', 'Name': 'test1'},
+                                // {Id: '0015j00000cZPQTAA4', 'Name': 'fdg'},
+                                // {Id: '0015j00000dljIDAAY', 'Name': 'test33'},
+                                {SF_ID : '0015200000uxrGdAAI', 'NAME' : 'Test'},
+                                {SF_ID : '0015200000uxrGdAAJ', 'NAME' : 'Test1'},
+                                {SF_ID : '0015200000uxrGdAAK', 'NAME' : 'Test2'},
+                                {SF_ID : '0015200000uxrGdAAL', 'NAME' : 'Test3'},
+                                {SF_ID : '0015200000uxrGdAAM', 'NAME' : 'Test4'},
+                                {SF_ID : '0015200000uxrGdAAN', 'NAME' : 'Test5'},
+                                {SF_ID : '0015200000uxrGdAAO', 'NAME' : 'Test6'},
+                                {SF_ID : '0015200000uxrGdAAP', 'NAME' : 'Test7'},
+                                {SF_ID : '0015200000uxrGdAAQ', 'NAME' : 'Test8'},
+                                {SF_ID : '0015200000uxrGdAAR', 'NAME' : 'Test9'},
+                                {SF_ID : '0015200000uxrGdAAS', 'NAME' : 'Test10'},
+                                {SF_ID : '0015200000uxrGdAAT', 'NAME' : 'Test11'},
+                                {SF_ID : '0015200000uxrGdAAU', 'NAME' : 'Test12'},
+                                {SF_ID : '0015200000uxrGdAAV', 'NAME' : 'Test13'},
+                                {SF_ID : '0015200000uxrGdAAW', 'NAME' : 'Test14'},
+                                {SF_ID : '0015200000uxrGdAAX', 'NAME' : 'Test15'},
+                                {SF_ID : '0015200000uxrGdAAY', 'NAME' : 'Test16'},
+                                {SF_ID : '0015200000uxrGdAAZ', 'NAME' : 'Test17'},
+                                {SF_ID : '0015200000uxrGdAAA', 'NAME' : 'Test118'},
+                                {SF_ID : '0015200000uxrGdAAI', 'NAME' : 'Test19'},
+                                {SF_ID : '0015200000uxrGdAAI', 'NAME' : 'Test20'},
+                                {SF_ID : '0015200000uxrGdAAI', 'NAME' : 'Test21'},
+                                {SF_ID : '0015200000uxrGdAAI', 'NAME' : 'Test22'},
+                                {SF_ID : '0015200000uxrGdAAI', 'NAME' : 'Test23'},
+                                {SF_ID : '0015200000uxrGdAAI', 'NAME' : 'Test24'},
+                                {SF_ID : '0015200000uxrGdAAI', 'NAME' : 'Test25'},
+                            ]
+                            },
+            "lightning", 
+            // function (cmp){
+            //     document.querySelector('c-list-builder').addEventListener('notification', (e) => {
+            //         console.log('e ',e);
+            //         console.log('e ',e.detail);
+            //         console.log('In InFO',e.detail['e']);
+            //         let msg;
+            //         if(e.detail['e'] == 'info'){
+            //             msg = 'Contact has been already Assinged To Account.';
+            //         }
+            //         else if(e.detail['e'] == 'success'){
+            //             msg = 'successfully Contact has been Assigned.';
+            //         }
+            //         else{
+            //             msg = 'Their is an Error updating record';
+            //         }
+            //             sforce.one.showToast({
+            //                 "type": e.detail['e'],
+            //                 "title": e.detail['e']+ ' !!',
+            //                 "message": msg    
+            //             });
+            //     });
+            );
+        });
+     </script>
+</apex:page>
